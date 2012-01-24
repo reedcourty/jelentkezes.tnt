@@ -10,6 +10,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+DEFAULT_FROM_EMAIL = 'regisztracio@jelentkezes.tnt.bme.hu'
+
 MANAGERS = ADMINS
 
 DATABASES = {
