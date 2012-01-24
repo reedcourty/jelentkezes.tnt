@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+{% if form.errors %}
+{{ form.errors }}
+{% endif %}
+
+
+<form action="." method="post">{% csrf_token %}
+
+<table>
+<tr>
+    <td>Neptun kód</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>A használni kívánt jelszó</td>
+    <td>{{ form.password1 }}</td>
+</tr>
+<tr>
+    <td>A használni kívánt jelszó még egyszer</td>
+    <td>{{ form.password2 }}</td>
+</tr>
+</table>
+
+<input type="submit" value="Regisztrálok" />
+</form>
+
+{% endblock %}
