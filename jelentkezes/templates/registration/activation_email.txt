@@ -1,6 +1,7 @@
-{% load i18n %}
-{% trans "Activate account at" %} {{ site.name }}:
+Gratulálunk!
+
+Sikeresen regisztráltál a {{ site.name }} oldalon. A regisztráció véglegesítéséhez aktiválnod kell a fiókodat. Kattints a következő linkre, vagy másold be a böngésződ URL mezőjébe:
 
 http://{{ site.domain }}{% url registration_activate activation_key %}
 
-{% blocktrans %}Link is valid for {{ expiration_days }} days.{% endblocktrans %}
+A link {{ expiration_days }} napig érvényes.

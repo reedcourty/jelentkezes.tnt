@@ -1,1 +1,1 @@
-{% load i18n %}{% trans "Account activation on" %} {{ site.name }}
+Fiók aktiválása a {{ site.name }} oldalon

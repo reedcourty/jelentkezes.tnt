@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
 
 {% if account %}
 
-<p>{% trans "Account successfully activated" %}</p>
+<p>Sikeresen aktiváltad a fiókod!</p>
 
-<p><a href="{% url auth_login %}">{% trans "Log in" %}</a></p>
+<p><a href="{% url auth_login %}">Belépés</a></p>
 
 {% else %}
 
-<p>{% trans "Account activation failed" %}</p>
+<p>Valami nem sikerült!</p>
 
 {% endif %}
 
