@@ -6,8 +6,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Targy(models.Model):
-    nev = models.CharField(max_length=30)   
-    kod = models.CharField(max_length=15)
+    nev = models.CharField(max_length=30, verbose_name=u'Tárgynév')   
+    kod = models.CharField(max_length=15, verbose_name=u'Tárgykód')
+
+    def __unicode__(self):
+        return u'{0} ({1})'.format(self.nev, self.kod)
+
+    class Meta:
+        verbose_name = u'Tárgy'
+        verbose_name_plural = u'Tárgyak'
     
 class Kurzus(models.Model):
     
@@ -27,15 +34,32 @@ class Kurzus(models.Model):
         (u'14',u'14:00-15:30'),
     )
     
-    nev = models.CharField(max_length=30)
-    idopont_nap = models.CharField(max_length=1, choices=NAP_CHOICES)
-    idopont_sav = models.CharField(max_length=2, choices=SAV_CHOICES)
-    ferohely = models.IntegerField()
-    hallgatok = models.IntegerField()
+    nev = models.CharField(max_length=30, verbose_name=u'Kurzus neve')
+    idopont_nap = models.CharField(max_length=1, choices=NAP_CHOICES,
+        verbose_name=u'Nap')
+    idopont_sav = models.CharField(max_length=2, choices=SAV_CHOICES,
+        verbose_name=u'Sáv')
+    ferohely = models.IntegerField(verbose_name=u'Férőhely')
+    hallgatok = models.IntegerField(
+        verbose_name=u'Jelentkezett hallgatók száma')
+
+    def __unicode__(self):
+        return u'{0} - {1} - {2}'.format(self.nev, self.idopont_nap,
+            self.idopont_sav)
+
+
+    class Meta:
+        verbose_name = u'Kurzus'
+        verbose_name_plural = u'Kurzusok'
     
 class Felhasznalo(models.Model):
     user = models.OneToOneField(User)
-    nev = models.CharField(max_length=200)
     targy = models.ForeignKey(Targy)
     kurzus = models.ForeignKey(Kurzus)
-    felvetel_ideje = models.DateTimeField(u'a kurzus felvételének ideje')
+    felvetel_ideje = models.DateTimeField(
+        verbose_name = u'a kurzus felvételének ideje')
+
+    class Meta:
+        verbose_name = u'Felhasználó'
+        verbose_name = u'Felhasználók'
+
