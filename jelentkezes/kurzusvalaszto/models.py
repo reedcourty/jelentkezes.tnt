@@ -35,7 +35,6 @@ class Kurzus(models.Model):
     
 class Felhasznalo(models.Model):
     user = models.OneToOneField(User)
-    nev = models.CharField(max_length=200)
     targy = models.ForeignKey(Targy)
     kurzus = models.ForeignKey(Kurzus)
     felvetel_ideje = models.DateTimeField(u'a kurzus felvételének ideje')
