@@ -6,8 +6,16 @@ from kurzusvalaszto.models import Kurzus, Targy, Felhasznalo
 
 admin.site.unregister(User)
 
-admin.site.register(Kurzus)
-admin.site.register(Targy)
+class KurzusAdmin(admin.ModelAdmin):
+    list_display = ('nev', 'idopont_nap', 'idopont_sav', 'ferohely',
+        'hallgatok')
+
+admin.site.register(Kurzus, KurzusAdmin)
+
+class TargyAdmin(admin.ModelAdmin):
+    list_display = ('nev', 'kod')
+
+admin.site.register(Targy, TargyAdmin)
      
 class FelhasznaloInline(admin.StackedInline):
     model = Felhasznalo
