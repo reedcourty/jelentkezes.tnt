@@ -10,7 +10,6 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from kurzusvalaszto.models import Felhasznalo
-from kurzusvalaszto.forms import UsernameForm
 
 def index(request):
     return HttpResponse("Hello, world.")
