@@ -53,7 +53,7 @@ def user_start(request):
     # Ha nincs kitöltve a név, akkor átdobjuk a kitöltős view-ra
     user = User.objects.get(username=request.user)
     if (user.last_name=='') or (user.first_name==''):
-        return name_load(request, user)
+        return name_load(request)
     else:
         return render_to_response('kurzusvalaszto/user_start.html',
                               { 'user': user, },
