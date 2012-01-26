@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+{{ user.first_name }}
+{{ user.last_name }}
+
+<a href="/username/">Név módosítása</a>
+
+{% endblock %}
