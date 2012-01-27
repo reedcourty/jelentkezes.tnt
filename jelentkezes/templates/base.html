@@ -1,23 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hu" lang="hu">
 <head>
-    <link rel="stylesheet" href="style.css" />
-    <title>{% block title %}My amazing site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/style.css" />
+    <title>{% block title %}jelentkezes.tnt.bme.hu{% endblock %}</title>
 </head>
 
 <body>
     <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
-        </ul>
-        {% endblock %}
+        {% block sidebar %}{% endblock %}
     </div>
 
     <div id="content">
         {% block content %}{% endblock %}
+    </div>
+    
+    <div id="footer">
+        {% block footer %}{% endblock %}
     </div>
 </body>
 </html>

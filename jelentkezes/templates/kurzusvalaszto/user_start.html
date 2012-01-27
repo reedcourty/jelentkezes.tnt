@@ -8,4 +8,10 @@
 
 <a href="/username/">Név módosítása</a>
 
+<form method="post" action="{% url 'django.contrib.auth.views.logout' %}">
+{% csrf_token %}
+<input type="submit" value="Kijelentkezés" />
+
+</form>
+
 {% endblock %}

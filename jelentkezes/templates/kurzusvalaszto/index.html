@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div id="login_badge">
+<a href="{% url 'django.contrib.auth.views.login' %}">Bejelentkezés</a>
+</div>
+
+{% endblock %}

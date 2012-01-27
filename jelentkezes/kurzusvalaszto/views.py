@@ -16,7 +16,12 @@ from django.utils.datastructures import MultiValueDictKeyError
 from kurzusvalaszto.models import Felhasznalo, Targy, Kurzus
 
 def index(request):
-    return HttpResponse("Hello, world.")
+    if request.user.is_authenticated():
+        return HttpResponse("Hello, " + request.user.username)
+    else:
+        return render_to_response('kurzusvalaszto/index.html',
+                              {},
+                              context_instance = RequestContext(request))
 
 @login_required
 def name_load(request):
