@@ -8,8 +8,6 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 config = ConfigParser.ConfigParser()
 config.read(PROJECT_PATH + '/server_host.cfg')
 
-print(PROJECT_PATH + 'server_host.cfg')
-
 db_name = config.get('database_settings', 'name')
 db_user = config.get('database_settings', 'user')
 db_password = config.get('database_settings', 'password')
