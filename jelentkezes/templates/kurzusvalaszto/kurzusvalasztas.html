@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+{% endif %}
+
+<form action="." method="post">{% csrf_token %}
+
+<table>
+<tr>
+    <td>Neptunban felvett tárgy</td>
+    <td>
+    <select name="targyak">
+        {% if targy_nincs %}
+        <option value="-">Válasz egy tárgyat!</option>
+        {% endif %}
+        {% for targy in targyak %}
+        <option value="{{ targy.kod }}">{{ targy }}</option>
+        {% endfor %}
+</select>
+    
+    </td>
+</tr>
+</table>
+
+
+
+
+<table>
+<tr>
+<td>Sáv</td>
+<td>Hétfő</td>
+<td>Kedd</td>
+<td>Szerda</td>
+<td>Csütörtök</td>
+<td>Péntek</td>
+</tr>
+
+
+<tr>
+    <td>07:00-08:00</td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'H' %}
+                {% if kurzus.idopont_sav == '07' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'K' %}
+                {% if kurzus.idopont_sav == '07' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'S' %}
+                {% if kurzus.idopont_sav == '07' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'C' %}
+                {% if kurzus.idopont_sav == '07' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'P' %}
+                {% if kurzus.idopont_sav == '07' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+<tr>
+    <td>08:00-10:00</td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'H' %}
+                {% if kurzus.idopont_sav == '08' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'K' %}
+                {% if kurzus.idopont_sav == '08' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'S' %}
+                {% if kurzus.idopont_sav == '08' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'C' %}
+                {% if kurzus.idopont_sav == '08' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'P' %}
+                {% if kurzus.idopont_sav == '08' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+<tr>
+    <td>10:00-12:00</td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'H' %}
+                {% if kurzus.idopont_sav == '10' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'K' %}
+                {% if kurzus.idopont_sav == '10' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'S' %}
+                {% if kurzus.idopont_sav == '10' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'C' %}
+                {% if kurzus.idopont_sav == '10' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'P' %}
+                {% if kurzus.idopont_sav == '10' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+<tr>
+    <td>12:00-14:00</td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'H' %}
+                {% if kurzus.idopont_sav == '12' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'K' %}
+                {% if kurzus.idopont_sav == '12' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'S' %}
+                {% if kurzus.idopont_sav == '12' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'C' %}
+                {% if kurzus.idopont_sav == '12' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'P' %}
+                {% if kurzus.idopont_sav == '12' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+<tr>
+    <td>14:00-15:30</td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'H' %}
+                {% if kurzus.idopont_sav == '14' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'K' %}
+                {% if kurzus.idopont_sav == '14' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'S' %}
+                {% if kurzus.idopont_sav == '14' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'C' %}
+                {% if kurzus.idopont_sav == '14' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {% for kurzus in kurzusok %}
+            {% if kurzus.idopont_nap == 'P' %}
+                {% if kurzus.idopont_sav == '14' %}
+                    {% if valasztott_kurzus.id == kurzus.id %}
+                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% else %}
+                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                    {% endif %}                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+</table>
+
+<input type="submit" value="Ment" />
+</form>
+
+{% endblock %}
