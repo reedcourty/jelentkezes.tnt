@@ -1,7 +1,18 @@
 # Django settings for jelentkezes project.
 
 import os
+import ConfigParser
+
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+config = ConfigParser.ConfigParser()
+config.read(PROJECT_PATH + '/server_host.cfg')
+
+print(PROJECT_PATH + 'server_host.cfg')
+
+db_name = config.get('database_settings', 'name')
+db_user = config.get('database_settings', 'user')
+db_password = config.get('database_settings', 'password')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -17,9 +28,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'jelentkezes',                      # Or path to database file if using sqlite3.
-        'USER': 'jelentkezes_user',                      # Not used with sqlite3.
-        'PASSWORD': '1234qwer',                  # Not used with sqlite3.
+        'NAME': db_name,                      # Or path to database file if using sqlite3.
+        'USER': db_user,                      # Not used with sqlite3.
+        'PASSWORD': db_password,                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }

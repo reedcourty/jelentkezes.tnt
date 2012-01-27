@@ -2,3 +2,4 @@
 .project
 .pydevproject
 jelentkezes/static/admin
+server_host.cfg
