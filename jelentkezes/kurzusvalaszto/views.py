@@ -17,8 +17,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 from kurzusvalaszto.models import Felhasznalo, Targy, Kurzus
 
 def index(request):
+    regisztracio = settings.REGISZTRACIO_ENGEDELYEZVE
     return render_to_response('kurzusvalaszto/index.html',
-                              {},
+                              {'regisztracio': regisztracio,},
                               context_instance = RequestContext(request))
 
 @login_required

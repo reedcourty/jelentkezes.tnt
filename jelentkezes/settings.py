@@ -13,7 +13,11 @@ db_name = config.get('database_settings', 'name')
 db_user = config.get('database_settings', 'user')
 db_password = config.get('database_settings', 'password')
 
-DEBUG = True
+debug_mode = config.getboolean('debug_settings', 'mode')
+
+REGISZTRACIO_ENGEDELYEZVE = config.getboolean('other_settings', 'registration')
+
+DEBUG = debug_mode
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

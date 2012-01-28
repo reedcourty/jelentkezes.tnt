@@ -4,14 +4,16 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<a href="{% url 'kurzusvalaszto.views.start' %}">Profil</a>
+    <a href="{% url 'kurzusvalaszto.views.start' %}">Profil</a>
 {% else %}
-<div id="login_badge">
-<a href="{% url 'django.contrib.auth.views.login' %}">Bejelentkezés</a>
-</div>
-<div id="registration_badge">
-<a href="/accounts/register">Regisztráció</a>
-</div>
+    <div id="login_badge">
+        <a href="{% url 'django.contrib.auth.views.login' %}">Bejelentkezés</a>
+    </div>
+    {% if regisztracio %}
+        <div id="registration_badge">
+            <a href="/accounts/register">Regisztráció</a>
+        </div>
+    {% endif %}
 {% endif %}
 
 
