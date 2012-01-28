@@ -143,7 +143,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 AUTH_PROFILE_MODULE = "kurzusvalaszto.felhasznalo"
 
-LOGIN_REDIRECT_URL = "/user/"
+LOGIN_REDIRECT_URL = "/start"
 
 if DEBUG:
     KURZUS_JELENTKEZESI_IDOSZAK_K = datetime.datetime.now()

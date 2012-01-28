@@ -17,10 +17,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from kurzusvalaszto.models import Felhasznalo, Targy, Kurzus
 
 def index(request):
-    if request.user.is_authenticated():
-        return HttpResponse("Hello, " + request.user.username + str(settings.KURZUS_JELENTKEZESI_IDOSZAK_K))
-    else:
-        return render_to_response('kurzusvalaszto/index.html',
+    return render_to_response('kurzusvalaszto/index.html',
                               {},
                               context_instance = RequestContext(request))
 
@@ -45,7 +42,7 @@ def name_load(request):
             user.last_name = user_last_name
             user.first_name = user_first_name
             user.save()
-            return user_start(request)
+            return start(request)
     else:
         user_last_name = user.last_name
         user_first_name = user.first_name
@@ -58,15 +55,21 @@ def name_load(request):
 
 
 @login_required
-def user_start(request):
+def start(request):
     
     # Ha nincs kitöltve a név, tárgy akkor átdobjuk a kitöltős view-ra
     user = User.objects.get(username=request.user)
     if ((user.last_name=='') or (user.first_name=='')):
         return name_load(request)
     else:
-        return render_to_response('kurzusvalaszto/user_start.html',
-                              { 'user': user, },
+        
+        targy = get_user_targy(user)
+        kurzus = get_user_kurzus(user)
+        
+        return render_to_response('kurzusvalaszto/start.html',
+                              { 'user': user,
+                                'targy': targy,
+                                'kurzus': kurzus },
                               context_instance = RequestContext(request))
 
 
@@ -164,7 +167,7 @@ def kurzus_modositas(request, user, kji, targyak, kurzusok, felhasznalo, a_targy
                                       'error': error },
                                       context_instance = RequestContext(request))
         else:
-            return user_start(request)
+            return start(request)
                 
     return render_to_response('kurzusvalaszto/kurzusvalasztas.html',
                               {'targyak': targyak,
@@ -212,7 +215,7 @@ def kurzus_jelentkezes(request, user, kji, targyak, kurzusok):
                                           kurzus=valasztott_kurzus,
                                           felvetel_ideje=fi)
                 felhasznalo.save()
-                return user_start(request)
+                return start(request)
             else:
                 error = 'A kurzus már betelt!'
                 return render_to_response('kurzusvalaszto/kurzusvalasztas.html',
