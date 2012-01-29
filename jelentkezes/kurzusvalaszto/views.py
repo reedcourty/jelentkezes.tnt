@@ -133,7 +133,7 @@ def kurzus_modositas(request, user, kji, targyak, kurzusok, felhasznalo, a_targy
     valasztott_targy = a_targy
     valasztott_kurzus = a_kurzus
     if not kji:
-        error = u'Nincs kurzus jelentkezési időszak! Tantárgy és sportág választás nem lehetséges.'
+        error = u'Nincs kurzus jelentkezési időszak! Tantárgy és sportág mentése nem lehetséges.'
         error_van = True
     if request.method == 'POST':
         
@@ -185,7 +185,7 @@ def kurzus_jelentkezes(request, user, kji, targyak, kurzusok):
     valasztott_targy = None
     valasztott_kurzus = None
     if not kji:
-        error = u'Nincs kurzus jelentkezési időszak! Tantárgy és sportág választás nem lehetséges.'
+        error = u'Nincs kurzus jelentkezési időszak! Tantárgy és sportág mentése nem lehetséges.'
         error_van = True
     if request.method == 'POST':
         try:
