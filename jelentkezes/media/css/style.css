@@ -33,6 +33,11 @@ h1 {
     border: solid 5px #9c4646;
 }
 
+#login_box a:hover {
+    color: #cb5b5b;
+    text-decoration: none;
+}
+
 #badge_contener {
     align: center;
     margin: 20px auto;
