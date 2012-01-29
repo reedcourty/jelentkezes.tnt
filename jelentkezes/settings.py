@@ -17,6 +17,8 @@ debug_mode = config.getboolean('debug_settings', 'mode')
 
 REGISZTRACIO_ENGEDELYEZVE = config.getboolean('other_settings', 'registration')
 
+ADMIN_URL = config.get('other_settings', 'admin_url')
+
 DEBUG = debug_mode
 TEMPLATE_DEBUG = DEBUG
 
