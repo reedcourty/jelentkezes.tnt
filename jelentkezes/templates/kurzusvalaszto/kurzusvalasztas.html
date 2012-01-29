@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block title %}Sportág választás - jelentkezes.tnt.bme.hu{% endblock %}
+
 {% block content %}
 
+<h1>Sportág választás</h1>
+
 {% if error %}
-{{ error }}
+<div class="hiba">
+<p>{{ error }}</p>
+</div>
 {% endif %}
 
-<form action="." method="post">{% csrf_token %}
+<div class="task">
+    <p>Válaszd ki a Neptunban felvett tárgyat!</p>
+</div>
 
-<table>
+<form action="." method="post">{% csrf_token %}
+<table id="targy_table">
 <tr>
     <td>Neptunban felvett tárgy</td>
     <td>
@@ -24,33 +33,34 @@
             <option value="{{ targy.kod }}">{{ targy }}</option>
             {% endif %}
         {% endfor %}
-</select>
-    
+    </select>
     </td>
 </tr>
 </table>
 
-<table>
+<div class="task">
+    <p>Válassz ki egy számodra szimpatikus időponthoz rendelt sportágat!</p>
+</div>
+
+<table id="timetable">
 <tr>
-<td>Sáv</td>
-<td>Hétfő</td>
-<td>Kedd</td>
-<td>Szerda</td>
-<td>Csütörtök</td>
-<td>Péntek</td>
+<th>Sáv</th>
+<th>Hétfő</th>
+<th>Kedd</th>
+<th>Szerda</th>
+<th>Csütörtök</th>
+<th>Péntek</th>
 </tr>
-
-
 <tr>
-    <td>07:00-08:00</td>
+    <td class="first_col">07:00-08:00</td>
     <td>
         {% for kurzus in kurzusok %}
             {% if kurzus.idopont_nap == 'H' %}
                 {% if kurzus.idopont_sav == '07' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}
                 {% endif %}
             {% endif %}
@@ -61,9 +71,9 @@
             {% if kurzus.idopont_nap == 'K' %}
                 {% if kurzus.idopont_sav == '07' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -73,9 +83,9 @@
             {% if kurzus.idopont_nap == 'S' %}
                 {% if kurzus.idopont_sav == '07' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -85,9 +95,9 @@
             {% if kurzus.idopont_nap == 'C' %}
                 {% if kurzus.idopont_sav == '07' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -97,24 +107,24 @@
             {% if kurzus.idopont_nap == 'P' %}
                 {% if kurzus.idopont_sav == '07' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
     </td>
 </tr>
 <tr>
-    <td>08:00-10:00</td>
+    <td class="first_col">08:00-10:00</td>
     <td>
         {% for kurzus in kurzusok %}
             {% if kurzus.idopont_nap == 'H' %}
                 {% if kurzus.idopont_sav == '08' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -124,9 +134,9 @@
             {% if kurzus.idopont_nap == 'K' %}
                 {% if kurzus.idopont_sav == '08' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -136,9 +146,9 @@
             {% if kurzus.idopont_nap == 'S' %}
                 {% if kurzus.idopont_sav == '08' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -148,9 +158,9 @@
             {% if kurzus.idopont_nap == 'C' %}
                 {% if kurzus.idopont_sav == '08' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -160,24 +170,24 @@
             {% if kurzus.idopont_nap == 'P' %}
                 {% if kurzus.idopont_sav == '08' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
     </td>
 </tr>
 <tr>
-    <td>10:00-12:00</td>
+    <td class="first_col">10:00-12:00</td>
     <td>
         {% for kurzus in kurzusok %}
             {% if kurzus.idopont_nap == 'H' %}
                 {% if kurzus.idopont_sav == '10' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -187,9 +197,9 @@
             {% if kurzus.idopont_nap == 'K' %}
                 {% if kurzus.idopont_sav == '10' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -199,9 +209,9 @@
             {% if kurzus.idopont_nap == 'S' %}
                 {% if kurzus.idopont_sav == '10' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -211,9 +221,9 @@
             {% if kurzus.idopont_nap == 'C' %}
                 {% if kurzus.idopont_sav == '10' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -223,24 +233,24 @@
             {% if kurzus.idopont_nap == 'P' %}
                 {% if kurzus.idopont_sav == '10' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
     </td>
 </tr>
 <tr>
-    <td>12:00-14:00</td>
+    <td class="first_col">12:00-14:00</td>
     <td>
         {% for kurzus in kurzusok %}
             {% if kurzus.idopont_nap == 'H' %}
                 {% if kurzus.idopont_sav == '12' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -250,9 +260,9 @@
             {% if kurzus.idopont_nap == 'K' %}
                 {% if kurzus.idopont_sav == '12' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -262,9 +272,9 @@
             {% if kurzus.idopont_nap == 'S' %}
                 {% if kurzus.idopont_sav == '12' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -274,9 +284,9 @@
             {% if kurzus.idopont_nap == 'C' %}
                 {% if kurzus.idopont_sav == '12' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -286,24 +296,24 @@
             {% if kurzus.idopont_nap == 'P' %}
                 {% if kurzus.idopont_sav == '12' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
     </td>
 </tr>
 <tr>
-    <td>14:00-15:30</td>
+    <td class="first_col">14:00-15:30</td>
     <td>
         {% for kurzus in kurzusok %}
             {% if kurzus.idopont_nap == 'H' %}
                 {% if kurzus.idopont_sav == '14' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -313,9 +323,9 @@
             {% if kurzus.idopont_nap == 'K' %}
                 {% if kurzus.idopont_sav == '14' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -325,9 +335,9 @@
             {% if kurzus.idopont_nap == 'S' %}
                 {% if kurzus.idopont_sav == '14' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -337,9 +347,9 @@
             {% if kurzus.idopont_nap == 'C' %}
                 {% if kurzus.idopont_sav == '14' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}
@@ -349,9 +359,9 @@
             {% if kurzus.idopont_nap == 'P' %}
                 {% if kurzus.idopont_sav == '14' %}
                     {% if aktualis_kurzus.id == kurzus.id %}
-                        <input type="radio" name="kurzus_radio" checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} checked="checked" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% else %}
-                        <input type="radio" name="kurzus_radio" value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
+                        <input type="radio" name="kurzus_radio" {% if kurzus.hallgatok == kurzus.ferohely %} disabled="disabled" {% endif %} value="{{ kurzus.id }}">{{ kurzus.nev }} ({{ kurzus.hallgatok }}/{{ kurzus.ferohely }})<br/>
                     {% endif %}                {% endif %}
             {% endif %}
         {% endfor %}

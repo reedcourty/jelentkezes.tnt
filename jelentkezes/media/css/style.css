@@ -1,3 +1,26 @@
+/* base color: #973045 */
+
+body {
+    font-family: arial;
+}
+
+h1 {
+    color: #cb5b5b;
+    font-size: 24px;
+}
+
+.hiba p {
+    background-color: pink;
+    border: solid 2px red;
+    padding: 5px;
+    color: red;  
+}
+
+.task {
+    color: #cb5b5b;
+    font-family: arial;
+}
+
 #badge_contener {
     align: center;
     margin: 200px;
@@ -5,7 +28,7 @@
 
 a.badge #login_badge:hover {
     text-decoration: none;
-    border: solid 10px #9c4646;
+    border: solid 10px #cb5b5b;
 }
 
 #login_badge {
@@ -14,7 +37,7 @@ a.badge #login_badge:hover {
     width: 200px;
     height: 50px;
     background-color: #cb8484;
-    border: solid 10px #cb5b5b;
+    border: solid 10px #9c4646;
 }
 
 .badge_image {
@@ -42,4 +65,36 @@ a.badge #registration_badge:hover {
     height: 50px;
     background-color: #cb8484;
     border: solid 10px #cb5b5b;
+}
+
+.first_col {
+    background-color: #cb8484;
+    font-size: 12px;
+}
+
+#targy_table {
+    font-family: arial;
+    font-size: 14px;
+}
+
+#timetable {
+    font-family: arial;
+    border-spacing: 0px;
+    border-left: solid 1px #cb5b5b;
+    border-bottom: solid 1px #cb5b5b;
+}
+
+#timetable tr td {
+    border-right: solid 1px #cb5b5b;
+    border-top: solid 1px #cb5b5b;
+    font-size: 14px;
+    padding: 3px;
+}
+
+#timetable tr th {
+    font-size: 14px;
+    background-color: #cb8484;
+    border-right: solid 1px #cb5b5b;
+    border-top: solid 1px #cb5b5b;
+    padding: 3px;
 }

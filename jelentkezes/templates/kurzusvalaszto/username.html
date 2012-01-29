@@ -4,7 +4,9 @@
 {% block content %}
 
 {% if error %}
-{{ error }}
+<div class="hiba">
+<p>{{ error }}</p>
+</div>
 {% endif %}
 
 <form action="." method="post">{% csrf_token %}

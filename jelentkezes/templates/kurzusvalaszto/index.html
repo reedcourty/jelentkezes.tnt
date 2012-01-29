@@ -8,6 +8,7 @@
 {% if user.is_authenticated %}
     <a href="{% url 'kurzusvalaszto.views.start' %}">Profil</a>
 {% else %}
+
 <div id="badge_contener">
     <a class="badge" href="{% url 'django.contrib.auth.views.login' %}">
         <div id="login_badge">

@@ -4,7 +4,9 @@
 {% block content %}
 
 {% if form.errors %}
+<div class="hiba">
 <p>Hibás felhasználói név, vagy jelszó!</p>
+</div>
 {% endif %}
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
