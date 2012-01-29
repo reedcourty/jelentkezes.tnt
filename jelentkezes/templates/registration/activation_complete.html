@@ -3,10 +3,10 @@
 
 {% block content %}
 
-<p>Sikeresen aktiváltad a fiókod!</p>
+<h1>Sikeresen aktiváltad a fiókod!</h1>
 
-<div id="login_badge">
-<a href="{% url 'django.contrib.auth.views.login' %}">Bejelentkezés</a>
-</div>
+<p>Most már beléphetsz az oldalra.<p>
+
+<p><a href="{% url 'django.contrib.auth.views.login' %}">Bejelentkezés</a></p>
 
 {% endblock %}
