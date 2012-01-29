@@ -21,23 +21,45 @@ h1 {
     font-family: arial;
 }
 
+#login_box {
+    background-color: #cb8484;
+    text-align: center;
+    width: 280px;
+    margin: 40px auto;
+    padding: 30px;
+    -moz-box-shadow:    0px 0px 5px 3px #9c4646;
+    -webkit-box-shadow: 0px 0px 5px 3px #9c4646;
+    box-shadow:         0px 0px 5px 3px #9c4646;
+    border: solid 5px #9c4646;
+}
+
 #badge_contener {
     align: center;
-    margin: 200px;
+    margin: 20px auto;
+}
+
+#badge_contener h1 {
+    text-align: center;
 }
 
 a.badge #login_badge:hover {
     text-decoration: none;
     border: solid 10px #cb5b5b;
+    -moz-box-shadow:    0px 0px 5px 3px #cb5b5b;
+    -webkit-box-shadow: 0px 0px 5px 3px #cb5b5b;
+    box-shadow:         0px 0px 5px 3px #cb5b5b;
 }
 
 #login_badge {
-    margin: 0px auto 10px auto;
+    margin: 0px auto 20px auto;
     padding: 5px 5px 5px 5px;
     width: 200px;
     height: 50px;
     background-color: #cb8484;
     border: solid 10px #9c4646;
+    -moz-box-shadow:    0px 0px 5px 3px #9c4646;
+    -webkit-box-shadow: 0px 0px 5px 3px #9c4646;
+    box-shadow:         0px 0px 5px 3px #9c4646;
 }
 
 .badge_image {
@@ -55,7 +77,10 @@ a.badge {
 
 a.badge #registration_badge:hover {
     text-decoration: none;
-    border: solid 10px #9c4646;
+    border: solid 10px #cb5b5b;
+    -moz-box-shadow:    0px 0px 5px 3px #cb5b5b;
+    -webkit-box-shadow: 0px 0px 5px 3px #cb5b5b;
+    box-shadow:         0px 0px 5px 3px #cb5b5b;
 }
 
 #registration_badge {
@@ -64,7 +89,10 @@ a.badge #registration_badge:hover {
     width: 200px;
     height: 50px;
     background-color: #cb8484;
-    border: solid 10px #cb5b5b;
+    border: solid 10px #9c4646;
+    -moz-box-shadow:    0px 0px 5px 3px #9c4646;
+    -webkit-box-shadow: 0px 0px 5px 3px #9c4646;
+    box-shadow:         0px 0px 5px 3px #9c4646;
 }
 
 .first_col {
@@ -99,10 +127,10 @@ a.badge #registration_badge:hover {
     padding: 3px;
 }
 
-#timetable a {
+a {
     color: #cb5b5b;
 }
 
-#timetable a:hover {
+a:hover {
     color: #cb8484;
 }

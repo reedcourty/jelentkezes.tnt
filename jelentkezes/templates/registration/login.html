@@ -9,9 +9,10 @@
 </div>
 {% endif %}
 
+<div id="login_box">
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}
-<table>
+<table id="logintable">
 <tr>
     <td>Neptun kód</td>
     <td>{{ form.username }}</td>
@@ -20,12 +21,16 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
+<tr>
+    <td colspan="2" style="text-align: center;"><input type="submit" value="Bejelentkezés" /><br />
+    <a href="/accounts/password/reset/">Elfelejtetted a jelszavad?</a></td>
+</tr>
 </table>
 
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
 
-<a href="/accounts/password/reset/">Elfelejtetted a jelszavad?</a>
+<input type="hidden" name="next" value="{{ next }}" />
+
+</form>
+</div>
 
 {% endblock %}
