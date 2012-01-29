@@ -98,3 +98,11 @@ a.badge #registration_badge:hover {
     border-top: solid 1px #cb5b5b;
     padding: 3px;
 }
+
+#timetable a {
+    color: #cb5b5b;
+}
+
+#timetable a:hover {
+    color: #cb8484;
+}

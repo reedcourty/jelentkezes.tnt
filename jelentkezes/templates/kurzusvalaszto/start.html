@@ -1,35 +1,34 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block title %}Profil - jelentkezes.tnt.bme.hu{% endblock %}
+
 {% block content %}
 
-{{ user.first_name }}
-{{ user.last_name }}
+<h1>Profil</h1>
 
-{% if targy %}
-{{ targy }}
-{% else %}
-Nincs még tárgy megadva
-{% endif %}
-
-{% if kurzus %}
-{{ kurzus.nev }}
-{{ kurzus.get_idopont_nap_display }}
-{{ kurzus.get_idopont_sav_display }}
-{% else %}
+<table id="timetable">
+    <tr>
+        <td class="first_col">Név:</td><td>{{ user.last_name }} {{ user.first_name }}</td><td><a href="/username/">Név módosítása</a> <a href="/accounts/password/change/">Jelszó cseréje</a></td>
+    </tr>
+    <tr>
+        <td class="first_col">Tárgy:</td><td>{% if targy %}{{ targy }}{% else %}Nincs még tárgy megadva{% endif %}</td><td rowspan="2"><a href="/kurzusvalasztas/">Tárgy, kurzus felvétele/módosítása</a></td>
+    </tr>
+    <tr>
+        <td class="first_col">Kurzus:</td><td>{% if kurzus %}{{ kurzus.nev }} {{ kurzus.get_idopont_nap_display }} {{ kurzus.get_idopont_sav_display }}{% else %}
 Nincs még kurzus felvéve
 {% endif %}
+    </tr>
+    
+</table>
 
-<a href="/kurzusvalasztas/">Tárgy, kurzus felvétele/módosítása</a>
-
-<a href="/username/">Név módosítása</a>
-
-<a href="/accounts/password/change/">Jelszó cseréje</a>
 
 <form method="post" action="{% url 'django.contrib.auth.views.logout' %}">
 {% csrf_token %}
+<p>
 <input type="submit" value="Kijelentkezés" />
-
+</p>
 </form>
+
 
 {% endblock %}
