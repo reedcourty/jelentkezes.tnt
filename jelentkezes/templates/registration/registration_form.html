@@ -9,24 +9,29 @@
 </div>
 {% endif %}
 
+<h1>Regisztráció</h1>
+
+<div id="task">
+<p>Ahhoz, hogy a kurzust választhass, először regisztrálnod kell.</p>
+</div>
+
 <form action="." method="post">{% csrf_token %}
 
-<table>
+<table id="timetable">
 <tr>
-    <td>Neptun kód</td>
+    <td class="first_col">Neptun kód</td>
     <td>{{ form.username }}</td>
 </tr>
 <tr>
-    <td>A használni kívánt jelszó</td>
+    <td class="first_col">A használni kívánt jelszó</td>
     <td>{{ form.password1 }}</td>
 </tr>
 <tr>
-    <td>A használni kívánt jelszó még egyszer</td>
+    <td class="first_col">A használni kívánt jelszó<br /> még egyszer</td>
     <td>{{ form.password2 }}</td>
 </tr>
 </table>
-
-<input type="submit" value="Regisztrálok" />
+<p><input type="submit" value="Regisztrálok" /></p>
 </form>
 
 {% endblock %}
