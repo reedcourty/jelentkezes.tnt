@@ -2,6 +2,6 @@ Gratulálunk!
 
 Sikeresen regisztráltál a {{ site.name }} oldalon. A regisztráció véglegesítéséhez aktiválnod kell a fiókodat. Kattints a következő linkre, vagy másold be a böngésződ URL mezőjébe:
 
-https://{{ site.domain }}{% url registration_activate activation_key %}
+{{ protocol }}://{{ site.domain }}{% url registration_activate activation_key %}
 
 A link {{ expiration_days }} napig érvényes.
