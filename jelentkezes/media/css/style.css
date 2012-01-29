@@ -1,6 +1,45 @@
-#login_badge {
+#badge_contener {
     align: center;
-    width: 100px;
-    height: 100px;
-    text-color: red;
+    margin: 200px;
+}
+
+a.badge #login_badge:hover {
+    text-decoration: none;
+    border: solid 10px #9c4646;
+}
+
+#login_badge {
+    margin: 0px auto 10px auto;
+    padding: 5px 5px 5px 5px;
+    width: 200px;
+    height: 50px;
+    background-color: #cb8484;
+    border: solid 10px #cb5b5b;
+}
+
+.badge_image {
+    float: left;
+    width: 50px;
+    padding: 0px 10px 0px 10px;
+}
+
+a.badge {
+    text-decoration: none;
+    color: #000000;
+    font-family: arial;
+    font-size: 18px;
+}
+
+a.badge #registration_badge:hover {
+    text-decoration: none;
+    border: solid 10px #9c4646;
+}
+
+#registration_badge {
+    margin: 0px auto 10px auto;
+    padding: 5px 5px 5px 5px;
+    width: 200px;
+    height: 50px;
+    background-color: #cb8484;
+    border: solid 10px #cb5b5b;
 }
