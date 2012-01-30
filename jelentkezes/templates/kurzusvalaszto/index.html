@@ -12,7 +12,11 @@
 {% else %}
 
 <div id="badge_contener">
-    <h1>Kurzusválasztás</h1>
+    <div class="task" style="width: 300px; margin: 10px auto;">
+        <h1>Kurzusválasztás</h1>
+        <h3>Figyelem!</h3>
+        <p>Az oldal használata előtt olvassátok el a következő tájékoztatót: <a href="{{ STATIC_URL }}segedlet.pdf">segedlet.pdf</a></p>
+    </div>
     <a class="badge" href="{% url 'django.contrib.auth.views.login' %}">
         <div id="login_badge">
             <div class="badge_image">
