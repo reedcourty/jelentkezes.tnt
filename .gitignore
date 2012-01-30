@@ -3,3 +3,9 @@
 .pydevproject
 jelentkezes/static/admin
 server_host.cfg
+
+# Kedvenc LaTeX-es kivételeim:
+*.aux
+*.pdf
+*.log
+*.out
