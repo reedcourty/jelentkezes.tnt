@@ -184,7 +184,7 @@ def register(request, backend, success_url=None, form_class=None,
     if request.method == 'POST':
          
         rp = request.POST.copy()
-        rp.appendlist(u'email', rp['username'] + u'@nk.hszk.bme.hu')
+        rp.appendlist(u'email', rp['username'] + u'@nc.hszk.bme.hu')
         request.POST = rp
         
         form = form_class(data=request.POST, files=request.FILES)
