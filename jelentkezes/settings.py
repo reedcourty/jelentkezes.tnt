@@ -156,7 +156,7 @@ if DEBUG:
     KURZUS_JELENTKEZESI_IDOSZAK_V = datetime.datetime.now() + datetime.timedelta(days=1)
 else:
     KURZUS_JELENTKEZESI_IDOSZAK_K = datetime.datetime(2012,01,30,0,0,0,0)
-    KURZUS_JELENTKEZESI_IDOSZAK_V = datetime.datetime(2012,02,04,0,0,0,0)
+    KURZUS_JELENTKEZESI_IDOSZAK_V = datetime.datetime(2012,02,05,23,59,0,0)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
